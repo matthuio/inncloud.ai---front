@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  background: theme('colors.background');
+  color: theme('colors.secondary');
+  font-family: theme('fontFamily.sans');
+}
+
+* {
+  box-sizing: border-box;
+}
