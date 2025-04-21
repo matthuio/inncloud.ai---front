@@ -134,7 +134,9 @@ export default function MainHero({ mode }: MainHeroProps) {
               (mode === 'mobile' ? ' text-base whitespace-normal break-words' : '')
             }
           >
-            <span className="block text-center w-full">Increase my Revenue Speed</span>
+            <span className="block text-center w-full">
+              {mode === 'mobile' ? 'Faster Revenue' : 'Increase my Revenue Speed'}
+            </span>
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </Button>
         </motion.div>
