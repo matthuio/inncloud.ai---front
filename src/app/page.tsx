@@ -15,9 +15,13 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background flex flex-col items-center w-full overflow-x-hidden">
       <HomePageClient />
-      <AutomationCategoriesSection />
+      {/* Temporarily hide the Ops Categories Section - START */}
+      {/* <AutomationCategoriesSection /> */}
+      {/* Temporarily hide the Ops Categories Section - END */}
       <HowItWorksSection />
-      <TestimonialsSection />
+      {/* Temporarily hidden - Existing Testimonials Section START */}
+      {/* <TestimonialsSection /> */}
+      {/* Temporarily hidden - Existing Testimonials Section END */}
       <FooterSection />
     </main>
   );

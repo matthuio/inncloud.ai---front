@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
+// IMPORTANT: Move 'InnCloud.svg' to 'public/images/InnCloud.svg'
+
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Solutions", href: "#solutions" },
   { label: "Who We Help", href: "#who-we-help" },
   { label: "Results", href: "#results" },
-  { label: "About Us", href: "#about-us" },
+  { label: "About Us", href: "/about-us" },
 ];
 
 export default function Header() {
@@ -24,7 +26,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-start z-50 h-full -mt-6 pt-0">
           <span className="sr-only">InnCloud.ai Home</span>
-          <Image src={require("@/components/ui/InnCloud.svg")} alt="InnCloud Logo" width={144} height={144} className="w-36 h-36 md:w-48 md:h-48 object-contain mt-0 pt-0" />
+          <Image src="/images/InnCloud.svg" alt="InnCloud Logo" width={144} height={144} className="w-36 h-36 md:w-48 md:h-48 object-contain mt-0 pt-0" />
         </Link>
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-start gap-x-6 h-full m-0 p-0 -mt-6 pt-0">

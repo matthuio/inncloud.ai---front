@@ -1,8 +1,10 @@
 "use client";
 
 import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
 import MainHero from '@/components/MainHero';
+import ResultsSection from '@/components/ResultsSection';
+import HeroSection from '@/components/HeroSection';
+import WhoWeHelpSection from '@/components/WhoWeHelpSection';
 
 // Client component that displays both hero components vertically
 export default function HomePageClient() {
@@ -11,8 +13,12 @@ export default function HomePageClient() {
       <Header />
       {/* Display Vanta cloud animation hero at the top */}
       <MainHero />
-      {/* Display the solution selector below */}
+      {/* Insert Results section below hero */}
+      <ResultsSection />
+      {/* Display the solution selector below Results */}
       <HeroSection />
+      {/* Who We Work With section replaces duplicate Results */}
+      <WhoWeHelpSection />
     </>
   );
 }
