@@ -4,10 +4,15 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React, { useEffect, useRef, useState } from "react";
+import AnimatedCounter from "./AnimatedCounter";
 import * as THREE from "three";
 import CLOUDS from "vanta/dist/vanta.clouds.min";
 
-export default function MainHero() {
+interface MainHeroProps {
+  mode?: 'mobile' | 'desktop';
+}
+
+export default function MainHero({ mode }: MainHeroProps) {
   const scrollToUseCases = () => {
     document.getElementById("use-cases-section")?.scrollIntoView({
       behavior: "smooth",
@@ -86,16 +91,35 @@ export default function MainHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          We Speed Up What <span className="text-blue-600">Slows You Down</span>.
+          Speed Up Your Revenue. <span className="text-blue-600">Automatically.</span>
         </motion.h1>
         
         <motion.p 
-          className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto mb-10"
+          className="text-lg md:text-xl text-secondary/80 max-w-2xl mx-auto mb-10 flex flex-col items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          AI-powered workflows that accelerate revenue, streamline operations, and eliminate manual work.
+          <span
+            className={
+              mode === 'mobile'
+                ? 'flex flex-col items-center gap-1 w-full'
+                : mode === 'desktop'
+                  ? 'flex flex-row items-baseline gap-2 justify-center w-full'
+                  : 'flex flex-col xs:flex-row items-center xs:items-baseline gap-1 xs:gap-2 w-full'
+            }
+          >
+            <span>Increase revenue speed by</span>
+            <motion.span
+              className="text-blue-600 font-bold text-2xl md:text-3xl"
+              initial={{ textShadow: '0 0 0 #4C8AFF' }}
+              animate={{ textShadow: '0 0 10px #4C8AFF' }}
+              transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1 }}
+            >
+              <AnimatedCounter from={0} to={91.5} duration={2} />%
+            </motion.span>
+            <span>from cold lead to final payment.</span>
+          </span>
         </motion.p>
         
         <motion.div
@@ -105,9 +129,12 @@ export default function MainHero() {
         >
           <Button 
             onClick={scrollToUseCases} 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium text-lg shadow-lg group flex items-center gap-2 mx-auto"
+            className={
+              'bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium text-lg shadow-lg group flex items-center gap-2 mx-auto w-full max-w-xs sm:max-w-md' +
+              (mode === 'mobile' ? ' text-base whitespace-normal break-words' : '')
+            }
           >
-            Show Me How AI Can Help
+            <span className="block text-center w-full">Increase my Revenue Speed</span>
             <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
           </Button>
         </motion.div>

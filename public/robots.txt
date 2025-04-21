@@ -1,0 +1,25 @@
+User-agent: *
+Disallow:
+
+# Allow crawling of all content
+Allow: /
+
+# Sitemaps (update with your actual sitemap URL if different)
+Sitemap: https://inncloud.ai/sitemap.xml
+
+# Recommended: Prevent crawling of dev and test URLs
+Disallow: /dev/
+Disallow: /test/
+
+# Recommended: Prevent crawling of internal API routes
+Disallow: /api/
+
+# Recommended: Prevent crawling of search result pages
+Disallow: /search
+
+# Googlebot-specific rules
+User-agent: Googlebot
+Allow: /
+
+# Extra: Crawl-delay for aggressive bots (optional)
+# Crawl-delay: 10

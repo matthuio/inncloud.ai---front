@@ -52,7 +52,12 @@ function CategoryCard({ title, subtitle, icon: Icon, useCases, accent, cta }: an
           </li>
         ))}
       </ul>
-      <Button className={`bg-${accent} text-white font-bold px-6 py-2 rounded-lg shadow-md hover:bg-${accent}/90 transition-all`}>
+      <Button
+        className={`font-bold px-6 py-2 rounded-lg shadow-md transition-all 
+          ${accent === 'primary' ? 'bg-primary text-white hover:bg-primary/90' : ''}
+          ${accent === 'accent' ? 'bg-blue-500 text-white hover:bg-blue-600' : ''}
+        `}
+      >
         {cta}
       </Button>
     </motion.div>
