@@ -185,6 +185,7 @@ export default function HeroFlipCardSection() {
 
   return (
     <section
+      id="solutions"
       className="relative w-full flex flex-col items-center justify-center min-h-[80vh] py-20 px-4 overflow-hidden bg-gradient-to-br from-white to-slate-50"
       aria-label="Hero Section"
     >

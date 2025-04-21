@@ -22,7 +22,7 @@ function HelpTile({ icon: Icon, industry, tagline, problem }: any) {
 
 export default function WhoWeHelpSection() {
   return (
-    <section className="w-full py-16 lg:py-24 flex flex-col items-center bg-background">
+    <section id="who-we-help" className="w-full py-16 lg:py-24 flex flex-col items-center bg-background">
       <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-3 text-center">
         Who We Work With
       </h2>

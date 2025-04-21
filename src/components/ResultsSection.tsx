@@ -30,7 +30,7 @@ function ResultTile({ topNumber, unit, headline, text, businessType, icon: Icon 
 
 export default function ResultsSection() {
   return (
-    <section className="w-full py-20 px-4 flex flex-col items-center bg-background">
+    <section id="results" className="w-full py-20 px-4 flex flex-col items-center bg-background">
       <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-3 text-center">
         Results That Speak for Themselves
       </h2>
