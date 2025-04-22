@@ -3,8 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-
-// IMPORTANT: Move 'InnCloud.svg' to 'public/images/InnCloud.svg'
+import { LeadCapturePopup } from "@/components/LeadCapturePopup";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -16,6 +15,7 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [open, setOpen] = useState(false); // Mobile menu state
+  const [leadPopupOpen, setLeadPopupOpen] = useState(false); // Lead capture popup
 
   return (
     <header
@@ -63,6 +63,7 @@ export default function Header() {
           <Button
             className="bg-primary text-white font-bold px-8 py-2 rounded-full hover:bg-primary/90 transition-all h-12 text-lg flex items-center"
             style={{ lineHeight: 1 }}
+            onClick={() => setLeadPopupOpen(true)}
           >
             Rev Up My Revenue
           </Button>
@@ -126,13 +127,14 @@ export default function Header() {
             </ul>
             <Button
               className="bg-primary text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-primary/90 transition-all mt-10 text-xl"
-              onClick={() => setOpen(false)}
+              onClick={() => { setOpen(false); setLeadPopupOpen(true); }}
             >
               Rev Up My Revenue
             </Button>
           </div>
         )}
       </nav>
+    <LeadCapturePopup open={leadPopupOpen} onOpenChange={setLeadPopupOpen} />
     </header>
   );
 }
