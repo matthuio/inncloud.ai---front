@@ -402,9 +402,10 @@ export const LeadCapturePopup: React.FC<LeadCapturePopupProps> = ({ open, onOpen
     ),
     // Step 6: Availability (Calendly style)
     (
-      <motion.div key="step6" className="w-full text-center" initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -100, opacity: 0 }}>
+      <motion.div key="step6" className="w-full text-center md:overflow-visible" style={{ maxHeight: '100vh' }} initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -100, opacity: 0 }}>
         <h2 className="text-2xl font-bold mb-4">Your Time</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+        <div className="block md:hidden text-xs text-gray-400 mb-2">Scroll to select and confirm your time</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto max-h-[70vh] overflow-y-auto md:overflow-visible p-2 md:p-0" style={{ WebkitOverflowScrolling: 'touch' }}>
           {/* Calendar Picker */}
           <div>
             <ReactDatePicker
@@ -417,8 +418,29 @@ export const LeadCapturePopup: React.FC<LeadCapturePopupProps> = ({ open, onOpen
                 }
               }}
               minDate={new Date()}
-              calendarClassName="border rounded-lg"
+              filterDate={(date: Date) => {
+                const day = date.getDay();
+                return day !== 0 && day !== 6; // Disable Sundays (0) and Saturdays (6)
+              }}
+              calendarClassName="rounded-xl shadow-lg border bg-white p-2"
+              dayClassName={(date: Date) =>
+                `transition-all rounded-full w-10 h-10 flex items-center justify-center mx-auto text-base ` +
+                (selectedDate && date.toDateString() === selectedDate.toDateString()
+                  ? 'bg-primary text-white font-bold shadow'
+                  : 'hover:bg-primary/10 hover:text-primary')
+              }
+              renderCustomHeader={({ date, decreaseMonth, increaseMonth }: { date: Date; decreaseMonth: () => void; increaseMonth: () => void; }) => (
+                <div className="flex justify-between items-center mb-2 px-2">
+                  <button onClick={decreaseMonth} className="p-1 rounded hover:bg-primary/10 text-primary" aria-label="Previous Month">&#8592;</button>
+                  <span className="font-semibold text-lg">{date.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+                  <button onClick={increaseMonth} className="p-1 rounded hover:bg-primary/10 text-primary" aria-label="Next Month">&#8594;</button>
+                </div>
+              )}
             />
+            <div className="mt-3 text-xs text-gray-500 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-1 inline"><path strokeLinecap="round" strokeLinejoin="round" d="M12 17v2m0 0c-4.418 0-8-1.79-8-4V7a2 2 0 012-2h12a2 2 0 012 2v8c0 2.21-3.582 4-8 4z" /></svg>
+              {`Time zone: ${userTz.replace('_', ' ')}`}
+            </div>
           </div>
           {/* Time Slots */}
           <div>
