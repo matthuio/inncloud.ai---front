@@ -8,6 +8,7 @@ import { addHours, format, isToday, setHours, setMinutes, startOfDay, isBefore, 
 import { toZonedTime, toDate } from "date-fns-tz";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 // Optionally import a DatePicker (or build simple one)
 
@@ -476,6 +477,14 @@ export const LeadCapturePopup: React.FC<LeadCapturePopupProps> = ({ open, onOpen
                 selectedTime: finalSelectedDateTime?.toISOString(),
                 timezone: userTz,
               };
+              axios.post(process.env.NEXT_PUBLIC_n8n_webhook!, payload)
+                .then(response => {
+                  console.log('Booking response:', response.data);
+                  handleNext();
+                })
+                .catch(error => {
+                  console.error('Booking error:', error);
+                });
               console.log('Booking payload:', payload);
               console.log(JSON.stringify(payload, null, 2));
               handleNext();
