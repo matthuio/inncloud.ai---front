@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { LeadCapturePopup } from "@/components/LeadCapturePopup";
 
@@ -61,11 +62,16 @@ export default function Header() {
         {/* Desktop CTA Button */}
         <div className="hidden md:block ml-2 h-full flex items-center">
           <Button
-            className="bg-primary text-white font-bold px-8 py-2 rounded-full hover:bg-primary/90 transition-all h-12 text-lg flex items-center"
+            className={cn(
+              "relative overflow-hidden bg-primary text-white font-bold px-8 py-2 rounded-full hover:bg-primary/90 transition-all h-12 text-lg flex items-center shadow-lg shadow-primary/30",
+              'after:absolute after:inset-0 after:rounded-full after:pointer-events-none after:animate-[pulse-ring_3s_cubic-bezier(0.4,0,0.2,1)_infinite] after:border-[3px] after:border-white/50',
+              'before:absolute before:inset-0 before:rounded-full before:pointer-events-none before:animate-[pulse-ring_3s_cubic-bezier(0.4,0,0.2,1)_1s_infinite] before:border-[3px] before:border-white/50',
+              'hover:after:border-white/60 hover:before:border-white/60'
+            )}
             style={{ lineHeight: 1 }}
             onClick={() => setLeadPopupOpen(true)}
           >
-            Rev Up My Revenue
+            <span className="relative z-10">Rev Up My Revenue</span>
           </Button>
         </div>
         {/* Hamburger for mobile */}

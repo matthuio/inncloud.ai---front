@@ -6,7 +6,7 @@ import React from "react";
 const whoWeHelpData = [
   { icon: Briefcase, industry: 'Digital Marketing Agencies', tagline: 'Automate the boring, follow up faster.', problem: 'From form fills to proposals in minutes.' },
   { icon: MonitorSmartphone, industry: 'Managed IT Providers', tagline: 'Stop revenue leaks from overdue billing & ghosted leads.', problem: 'Smart follow-ups, instant replies, auto-sorted inbox.' },
-  { icon: BrainCircuit, industry: 'Digital Coaches', tagline: 'Respond to every lead before they ghost.', problem: 'Convert fast, stay top-of-mind, nurture cold leads.' },
+  { icon: BrainCircuit, industry: 'Digital Consultants', tagline: 'Respond to every lead before they ghost.', problem: 'Convert fast, stay top-of-mind, nurture cold leads.' },
 ];
 
 function HelpTile({ icon: Icon, industry, tagline, problem }: any) {

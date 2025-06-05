@@ -1,11 +1,11 @@
 "use client";
-import { BarChartBig, MonitorSmartphone, School } from "lucide-react";
+import { BarChartBig, MonitorSmartphone, School, UserCheck } from "lucide-react";
 import CountUp from "react-countup";
 import React from "react";
 
 const resultsData = [
   { topNumber: 52, unit: "%↑", headline: "Higher Lead Response Rate", text: "Instant outreach increased form response rates by 52%.", businessType: "Digital Coaching Business", icon: School },
-  { topNumber: 8, unit: "x Faster", headline: "Proposal Delivery Time", text: "Went from 7-day turnaround to same-day proposal submission.", businessType: "Marketing Agency", icon: BarChartBig },
+  { topNumber: 8, unit: "x Faster", headline: "Lead Enrichment Speed", text: "Achieve 8x faster lead enrichment compared to manual research, significantly cutting man-hours.", businessType: "Marketing Agency", icon: UserCheck },
   { topNumber: 63, unit: "%↑", headline: "Faster Payments Collected", text: "Automated reminders helped accelerate overdue payments.", businessType: "Managed IT Provider", icon: MonitorSmartphone },
 ];
 

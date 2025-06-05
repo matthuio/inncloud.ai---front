@@ -28,88 +28,90 @@ import {
 import { Button } from "@/components/ui/button";
 
 const CARDS = [
+  // Row 1
   {
-    key: "proposals",
+    key: "speed-to-lead",
     front: {
-      icon: FileClock,
-      label: "Slow Proposals",
-      desc: "Manual doc creation after meetings delays closing.",
-    },
-    back: {
-      icon: Wand2,
-      headline: "AI Proposal Generation",
-      desc: "InnCloud.ai auto-drafts proposals from meeting notes in seconds.",
-      cta: "Automate This →",
-    },
-  },
-  {
-    key: "leads",
-    front: {
-      icon: UserMinus,
-      label: "Missed Leads",
-      desc: "Leads fall through due to slow or no response.",
+      icon: Zap,
+      label: "Leads Cooling Fast?",
+      desc: "Leads cooling off? Losing out by slow connections?",
     },
     back: {
       icon: Zap,
-      headline: "Instant Lead Engagement",
-      desc: "AI instantly qualifies leads & triggers personalized outreach.",
-      cta: "Automate This →",
+      headline: "Speed to Lead",
+      desc: "Instantly engage prospects, turning interest into opportunities before competitors react!",
+      cta: "Discover How →",
     },
   },
   {
-    key: "outreach",
+    key: "lead-enrichment",
     front: {
-      icon: Siren,
-      label: "Delayed Outreach",
-      desc: "Lead forms submitted but no instant engagement.",
+      icon: UserCheck,
+      label: "Chasing Shadows?",
+      desc: "Wasting time on dead-end leads? Sketchy data blurring focus?",
     },
     back: {
-      icon: MessageCircle,
-      headline: "AI Instant Response",
-      desc: "Engage new web leads immediately with tailored AI messages.",
-      cta: "Automate This →",
+      icon: UserCheck,
+      headline: "Lead Enrichment & Qualify",
+      desc: "Turn vague data into rich profiles. Chase only golden leads!",
+      cta: "See the Clarity →",
     },
   },
   {
-    key: "payments",
+    key: "invoice-followup",
     front: {
-      icon: Hourglass,
-      label: "Slow Payments",
-      desc: "Overdue invoices pile up with no automated follow-up.",
+      icon: Receipt,
+      label: "Late Payment Headaches?",
+      desc: "Late payments draining energy? Cash flow unpredictable?",
     },
     back: {
-      icon: BellRing,
-      headline: "Automated Collections",
-      desc: "AI sends smart payment reminders & escalations automatically.",
-      cta: "Automate This →",
+      icon: Receipt,
+      headline: "Invoice Follow-Up",
+      desc: "Automated reminders & tracking ensure prompt, hassle-free payments.",
+      cta: "Automate Collections →",
     },
   },
+  // Row 2
   {
-    key: "inquiries",
+    key: "proposal-gen",
     front: {
-      icon: MailQuestion,
-      label: "Unsorted Inquiries",
-      desc: "Generic emails (e.g., info@) clog inboxes and get missed.",
+      icon: FileCheck,
+      label: "Proposal Bottleneck?",
+      desc: "Deals stalled by slow proposals? 'Proposal paralysis' hitting hard?",
     },
     back: {
-      icon: Route,
-      headline: "Intelligent Email Routing",
-      desc: "AI classifies, routes & drafts responses for general inquiries.",
-      cta: "Automate This →",
+      icon: FileCheck,
+      headline: "Proposal Gen",
+      desc: "AI crafts compelling proposals in minutes, wowing clients & closing deals fast!",
+      cta: "Generate Proposals Faster →",
     },
   },
   {
-    key: "deals",
+    key: "client-onboarding",
     front: {
-      icon: TrendingDown,
-      label: "Stalled Deals",
-      desc: "Pipeline deals go cold due to lack of follow-up/nurture.",
+      icon: UserCheck,
+      label: "Clunky Client Welcome?",
+      desc: "Client welcome confusing, not five-star? First impressions matter.",
+    },
+    back: {
+      icon: UserCheck,
+      headline: "Client Onboarding",
+      desc: "Craft seamless, impressive journeys. Make new clients feel valued from day one!",
+      cta: "Perfect Onboarding →",
+    },
+  },
+  {
+    key: "competitor-analysis",
+    front: {
+      icon: TrendingUp,
+      label: "Flying Blind?",
+      desc: "Navigating blind while competitors see all? Gain your X-ray vision.",
     },
     back: {
       icon: TrendingUp,
-      headline: "AI Deal Nurturing",
-      desc: "AI monitors CRM & suggests/automates actions to revive deals.",
-      cta: "Automate This →",
+      headline: "Competitor Analysis",
+      desc: "Get automated insights into rivals. Outsmart, outmaneuver, and lead!",
+      cta: "Gain Your Edge →",
     },
   },
 ];

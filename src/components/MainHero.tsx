@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import AnimatedCounter from "./AnimatedCounter";
 import * as THREE from "three";
 import CLOUDS from "vanta/dist/vanta.clouds.min";
@@ -13,18 +14,69 @@ interface MainHeroProps {
 }
 
 export default function MainHero({ mode }: MainHeroProps) {
-  const scrollToUseCases = () => {
+  const [threeLoaded, setThreeLoaded] = useState(false);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
+  const vantaRef = useRef<HTMLDivElement | null>(null);
+  const vantaEffect = useRef<any>(null);
+  const scrollInterval = useRef<NodeJS.Timeout | null>(null);
+
+  const startAutoScroll = useCallback(() => {
+    setIsAutoScrolling(true);
+    
+    // Smooth scroll to the use cases section first
     document.getElementById("use-cases-section")?.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
-  };
 
-  const vantaRef = useRef<HTMLDivElement | null>(null);
-  const vantaEffect = useRef<any>(null);
+    // Then start auto-scrolling
+    scrollInterval.current = setInterval(() => {
+      window.scrollBy({
+        top: 2.9, // 40% faster scrolling
+        behavior: 'smooth'
+      });
+    }, 20); // Keep the same interval but increase scroll amount for smoother feel
+  }, []);
+
+  const stopAutoScroll = useCallback(() => {
+    if (scrollInterval.current) {
+      clearInterval(scrollInterval.current);
+      scrollInterval.current = null;
+    }
+    setIsAutoScrolling(false);
+  }, []);
+
+  // Set up event listeners for user interaction
+  useEffect(() => {
+    if (isAutoScrolling) {
+      const handleUserInteraction = () => stopAutoScroll();
+      
+      // Add event listeners for various user interactions
+      window.addEventListener('mousedown', handleUserInteraction);
+      window.addEventListener('touchstart', handleUserInteraction);
+      window.addEventListener('wheel', handleUserInteraction, { passive: true });
+      window.addEventListener('keydown', handleUserInteraction);
+      
+      // Clean up
+      return () => {
+        window.removeEventListener('mousedown', handleUserInteraction);
+        window.removeEventListener('touchstart', handleUserInteraction);
+        window.removeEventListener('wheel', handleUserInteraction);
+        window.removeEventListener('keydown', handleUserInteraction);
+      };
+    }
+  }, [isAutoScrolling, stopAutoScroll]);
+
+  // Clean up interval on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollInterval.current) {
+        clearInterval(scrollInterval.current);
+      }
+    };
+  }, []);
 
   // State to ensure THREE.js is loaded in client environment
-  const [threeLoaded, setThreeLoaded] = useState(false);
 
   // First useEffect to confirm THREE is loaded
   useEffect(() => {
@@ -128,11 +180,16 @@ export default function MainHero({ mode }: MainHeroProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <Button 
-            onClick={scrollToUseCases} 
-            className={
-              'bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium text-lg shadow-lg group flex items-center gap-2 mx-auto w-full max-w-xs sm:max-w-md' +
-              (mode === 'mobile' ? ' text-base whitespace-normal break-words' : '')
-            }
+            onClick={startAutoScroll}
+            className={cn(
+              'relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium text-lg shadow-lg shadow-blue-600/30 group flex items-center gap-2 mx-auto w-full max-w-xs sm:max-w-md transition-all duration-200',
+              mode === 'mobile' ? 'text-base whitespace-normal break-words' : '',
+              isAutoScrolling ? 'transform scale-95 bg-blue-700' : '',
+              'after:absolute after:inset-0 after:rounded-xl after:pointer-events-none after:animate-[pulse-ring_3s_cubic-bezier(0.4,0,0.2,1)_infinite] after:border-[3px] after:border-white/50',
+              'before:absolute before:inset-0 before:rounded-xl before:pointer-events-none before:animate-[pulse-ring_3s_cubic-bezier(0.4,0,0.2,1)_1s_infinite] before:border-[3px] before:border-white/50',
+              'hover:after:border-white/60 hover:before:border-white/60'
+            )}
+            disabled={isAutoScrolling}
           >
             <span className="block text-center w-full">
               {mode === 'mobile' ? 'Faster Revenue' : 'Increase my Revenue Speed'}
